@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Recommendation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <style>
+      :root {
+        --primary: #00897b;
+      }
+    </style>
+  </head>
+  <body style="background-color:#fff8ed">
+    <main class="container" style="max-width:1400px">
+      <header>
+        <h1><span class="keyword">"{{keyword}}"</span>에 대한 검색결과</h1>
+      </header>
+      <div>
+        <nav class="options">
+          <a href="/">처음으로</a>
+        </nav>
+        <figure>
+          <table role="grid" style="height=800px;">
+            <thead>
+              <tr>
+                <th style="width:15%">책 표지</th>
+                <th style="width:15%">제목</th>
+                <th style="width:10%">저자</th>
+                <th style="width:10%">가격</th>
+                <th style="width:10%">출판사</th>
+                <th style="width:10%">출판일</th>
+                <th style="width:30%">설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in data %}
+              <tr>
+                <td style="width:15%"><image src="{{d['image']}}"></image></td>
+                <td style="width:15%">{{d["title"]}}</td>
+                <td style="width:10%">{{d["author"]}}</td>
+                <td style="width:10%">{{d["price"]}}</td>
+                <td style="width:10%">{{d["publisher"]}}</td>
+                <td style="width:10%">{{d["pubdate"]}}</td>
+                <td style="width:30%">{{d["description"]}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </figure>
+        <br>
+        <figure>
+          <form method="get" action="/recommend" method="POST">
+            <h3>선호하는 장르</h3>
+            <label><input type="checkbox" name="novel" value="novel">소설</label>
+            <label><input type="checkbox" name="poem" value="poem">시</label>
+            <label><input type="checkbox" name="hobby" value="hobby">취미</label>
+            <label><input type="checkbox" name="society" value="society">사회</label>
+            <label><input type="checkbox" name="art" value="art">예술</label>
+            <label><input type="checkbox" name="economy" value="economy">경제</label>
+            <label><input type="checkbox" name="science" value="science">과학</label>
+            <label><input type="checkbox" name="history" value="history">역사</label>
+            <label><input type="checkbox" name="self-develop" value="self-develop">자기계발</label>
+            <label><input type="checkbox" name="IT" value="IT">IT</label>
+            <br>
+            <br>
+            <h3>책을 통해 느끼고 싶은 감정</h3>
+            <label><input type="checkbox" name="happiness" value="happiness">행복</label>
+            <label><input type="checkbox" name="satisfaction" value="satisfaction">만족</label>
+            <label><input type="checkbox" name="passion" value="passion">열정</label>
+            <label><input type="checkbox" name="love" value="love">사랑</label>
+            <label><input type="checkbox" name="sadness" value="sadness">슬픔</label>
+            <label><input type="checkbox" name="anxiety" value="anxiety">불안</label>
+            <p><label><input type="submit" value="제출"></label><label><input type="reset" value="초기화"></label></p>
+          </form>
+        </figure>
+      </div>
+    </main>
+  </body>
+</html>
