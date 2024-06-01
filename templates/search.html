@@ -7,77 +7,174 @@
     <title>Book Recommendation</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+      href="style.css"
     />
     <style>
       :root {
-        --primary: #00897b;
+        --primary: #2c3495;
+      }
+
+      body {
+        width: 100vw; 
+        height: 100%;
+        background-color: #e7e4de;
+      }
+      form {
+        margin: 100px 20% 0px 20%;
+        align-items: center;
+        text-align: center;
+      }
+      input {
+        height: 50px;
+        font-weight: 600; 
+        width: 60%; 
+        margin-right: 10px;
+        background-color: #ffffff;
+      }
+      button {
+        width: 40%;
+        background-color: #2c3495;
+      }
+      table {
+        border-collapse: collapse;
+        width: 90vw;
+      }
+      thead {
+        height: 60px;
+      }
+      th, td {
+        border-collapse : collapse;
+        color: #ffffff;
+        background-color: #c2c2c2;
+        text-align: center;
+        font-size: 18px;
+      }
+      img {
+        width: 100%;
+      }
+      form {
+        margin: 0px;
+      }
+      
+      
+      .title {
+        color: #2c3495;
+        font-size: 80px; 
+        font-weight: 600; 
+        text-align: left; 
+        padding-top: 150px;
+      }
+      .subtitle {
+        color: #828282; 
+        font-size: 26px;  
+        text-align: left;
+      }
+      .inner {
+        max-width: 90vw;
+        margin: auto;
+      }
+      .inner2 {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+      }
+      .content-container{
+        display: flex;
+          margin-bottom: 10px;
+      }
+      .content-container2{
+        display: flex;
+          margin-bottom: 45px;
+      }
+      .content {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px;
+        width: 50%;
+        background-color: #c2c2c2; 
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .content2 {
+        display: inline-block;
+        margin: 10px;
+        padding: 40px;
+        width: 50%;
+        background-color: #c2c2c2; 
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .label-button {
+        display: block;
+        width: 250px;
+        margin: auto;
+      }
+      .checkbox-wrapper {
+          position: relative;
+          display: inline-block;
+          margin-left: 30px;
+          margin-bottom: 15px;
+      }
+      .checkbox-input {
+          display: none;
+      }
+      .checkbox-label {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #ddd;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: #2c3495;
+          font-weight: 600;
+      }
+      .checkbox-input:checked + .checkbox-label {
+          background-color: #2c3495;
+          color: #fff;
       }
     </style>
   </head>
-  <body style="background-color:#fff8ed">
-    <main class="container" style="max-width:1400px">
-      <header>
-        <h1><span class="keyword">"{{keyword}}"</span>에 대한 검색결과</h1>
-      </header>
-      <div>
-        <nav class="options">
-          <a href="/">처음으로</a>
-        </nav>
-        <figure>
-          <table role="grid" style="height=800px;">
-            <thead>
-              <tr>
-                <th style="width:15%">책 표지</th>
-                <th style="width:15%">제목</th>
-                <th style="width:10%">저자</th>
-                <th style="width:10%">가격</th>
-                <th style="width:10%">출판사</th>
-                <th style="width:10%">출판일</th>
-                <th style="width:30%">설명</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for d in data %}
-              <tr>
-                <td style="width:15%"><image src="{{d['image']}}"></image></td>
-                <td style="width:15%">{{d["title"]}}</td>
-                <td style="width:10%">{{d["author"]}}</td>
-                <td style="width:10%">{{d["price"]}}</td>
-                <td style="width:10%">{{d["publisher"]}}</td>
-                <td style="width:10%">{{d["pubdate"]}}</td>
-                <td style="width:30%">{{d["description"]}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </figure>
-        <br>
-        <figure>
-          <form method="get" action="/recommend" method="POST">
-            <h3>선호하는 장르</h3>
-            <label><input type="checkbox" name="novel" value="novel">소설</label>
-            <label><input type="checkbox" name="poem" value="poem">시</label>
-            <label><input type="checkbox" name="hobby" value="hobby">취미</label>
-            <label><input type="checkbox" name="society" value="society">사회</label>
-            <label><input type="checkbox" name="art" value="art">예술</label>
-            <label><input type="checkbox" name="economy" value="economy">경제</label>
-            <label><input type="checkbox" name="science" value="science">과학</label>
-            <label><input type="checkbox" name="history" value="history">역사</label>
-            <label><input type="checkbox" name="self-develop" value="self-develop">자기계발</label>
-            <label><input type="checkbox" name="IT" value="IT">IT</label>
+  <body>
+    <main class="container" style="max-width: 95vw; align-items: center;">
+      <div class="inner">
+        <div class="title">Results</div>
+        <div class="inner">
+          <figure>
+            <table role="grid">
+              <thead>
+                <tr>
+                      <th style="width:15%">Image</th>
+                      <th style="width:15%">Title</th>
+                      <th style="width:10%">Author</th>
+                      <th style="width:10%">Price</th>
+                      <th style="width:10%">Publisher</th>
+                      <th style="width:15%">Publication Date</th>
+                      <th style="width:30%">Description</th>
+                </tr>
+              </thead>
+            </table>
             <br>
-            <br>
-            <h3>책을 통해 느끼고 싶은 감정</h3>
-            <label><input type="checkbox" name="happiness" value="happiness">행복</label>
-            <label><input type="checkbox" name="satisfaction" value="satisfaction">만족</label>
-            <label><input type="checkbox" name="passion" value="passion">열정</label>
-            <label><input type="checkbox" name="love" value="love">사랑</label>
-            <label><input type="checkbox" name="sadness" value="sadness">슬픔</label>
-            <label><input type="checkbox" name="anxiety" value="anxiety">불안</label>
-            <p><label><input type="submit" value="제출"></label><label><input type="reset" value="초기화"></label></p>
-          </form>
-        </figure>
+            <table role="grid">
+              <tbody>
+                  {% for d in data %}
+                <tr>
+                    <td style="width:15%"><image src="{{d['image']}}"></image></td>
+                    <td style="width:15%">{{d["title"]}}</td>
+                    <td style="width:10%">{{d["author"]}}</td>
+                    <td style="width:10%">{{d["price"]}}</td>
+                    <td style="width:10%">{{d["publisher"]}}</td>
+                    <td style="width:15%">{{d["pubdate"]}}</td>
+                    <td style="width:30%">{{d["description"]}}</td>
+                </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+          </figure>
+        </div>
       </div>
     </main>
   </body>

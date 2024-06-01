@@ -5,25 +5,250 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Recommendation</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
-    />
+    <link rel="stylesheet" href="style.css" />
     <style>
       :root {
-        --primary: #00897b;
+        --primary: #2c3495;
+      }
+
+      body {
+        width: 100vw;
+        height: 100%;
+        background-color: #e7e4de;
+      }
+      form {
+        margin: 100px 20% 0px 20%;
+        align-items: center;
+        text-align: center;
+      }
+      input {
+        height: 50px;
+        font-weight: 600;
+        width: 60%;
+        margin-right: 10px;
+        background-color: #ffffff;
+      }
+      button {
+        width: 40%;
+        background-color: #2c3495;
+      }
+      table {
+        border-collapse: collapse;
+        width: 90vw;
+      }
+      thead {
+        height: 60px;
+      }
+      th,
+      td {
+        border-collapse: collapse;
+        color: #ffffff;
+        background-color: #c2c2c2;
+        text-align: center;
+        font-size: 18px;
+      }
+      img {
+        width: 100%;
+      }
+      form {
+        margin: 0px;
+      }
+
+      .title {
+        color: #2c3495;
+        font-size: 80px;
+        font-weight: 600;
+        text-align: left;
+        padding-top: 150px;
+      }
+      .subtitle {
+        color: #828282;
+        font-size: 26px;
+        text-align: left;
+      }
+      .inner {
+        max-width: 90vw;
+        margin: auto;
+      }
+      .inner2 {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+      }
+      .content-container {
+        display: flex;
+        margin-bottom: 10px;
+      }
+      .content-container2 {
+        display: flex;
+        margin-bottom: 45px;
+      }
+      .content {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px;
+        width: 50%;
+        background-color: #c2c2c2;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .content2 {
+        display: inline-block;
+        margin: 10px;
+        padding: 40px;
+        width: 50%;
+        background-color: #c2c2c2;
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .label-button {
+        display: block;
+        width: 250px;
+        margin: auto;
+      }
+      .checkbox-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-left: 30px;
+        margin-bottom: 15px;
+      }
+      .checkbox-input {
+        display: none;
+      }
+      .checkbox-label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #2c3495;
+        font-weight: 600;
+      }
+      .checkbox-input:checked + .checkbox-label {
+        background-color: #2c3495;
+        color: #fff;
       }
     </style>
   </head>
-  <body style="background-color:#fff8ed">
-    <main class="container">
-      <header>
-        <h1>도서 검색</h1>
-      </header>
-      <form action="/search">
-        <input type="text" name="keyword" placeholder="검색어를 입력해 주세요." />
-        <button role="button" class="outline">찾기</button>
-      </form>
+  <body>
+    <main class="container" style="max-width: 95vw; align-items: center;">
+      <div class="inner">
+        <div class="title">Exploration</div>
+        <div class="subtitle">Find your next book!</div>
+        <div class="content-container">
+          <div class="content">선호하는 장르를 선택하세요</div>
+          <div class="content">책을 읽으며 느끼고 싶은 감정을 선택하세요</div>
+        </div>
+        <div class="inner2">
+          <form action="/recommend" method="GET">
+            <div class="content-container2">
+              <div class="content2">
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="novel"
+                  /><span class="checkbox-label">소설</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="poem"
+                  /><span class="checkbox-label">시</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="hobby"
+                  /><span class="checkbox-label">취미</span></label
+                >
+                <br />
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="society"
+                  /><span class="checkbox-label">사회</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="art"
+                  /><span class="checkbox-label">예술</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="economy"
+                  /><span class="checkbox-label">경제</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="science"
+                  /><span class="checkbox-label">과학</span></label
+                >
+                <br />
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="history"
+                  /><span class="checkbox-label">역사</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="self-develop"
+                  /><span class="checkbox-label">자기계발</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="genre" value="IT"
+                  /><span class="checkbox-label">IT</span></label
+                >
+              </div>
+              <div class="content2">
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="emotion" value="happiness"
+                  /><span class="checkbox-label">행복</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="emotion" value="satisfaction"
+                  /><span class="checkbox-label">만족</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="emotion" value="passion"
+                  /><span class="checkbox-label">열정</span></label
+                >
+                <br />
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="emotion" value="love"
+                  /><span class="checkbox-label">사랑</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="emotion" value="sadness"
+                  /><span class="checkbox-label">슬픔</span></label
+                >
+                <label class="checkbox-wrapper"
+                  ><input type="checkbox" class="checkbox-input" name="emotion" value="anxiety"
+                  /><span class="checkbox-label">불안</span></label
+                >
+              </div>
+            </div>
+            <label class="label-button">
+              <input
+                type="reset"
+                value="Reset"
+                style="
+                  background-color: #c2c2c2;
+                  border: none;
+                  border-radius: 10px;
+                  color: #ffffff;
+                  width: 250px;
+                "
+              />
+            </label>
+            <div style="height: 15px;"></div>
+            <label class="label-button">
+              <input
+                type="submit"
+                value="Search"
+                style="
+                  background-color: #2c3495;
+                  border: none;
+                  border-radius: 10px;
+                  color: #ffffff;
+                  width: 250px;
+                "
+              />
+            </label>
+          </form>
+        </div>
+      </div>
     </main>
   </body>
 </html>
